@@ -1,0 +1,86 @@
+Save Code
+
+Dim ClientId As Integer = TextBox1.Text
+        Dim ClientName As String = TextBox2.Text
+        Dim Age As Integer = TextBox3.Text
+        Dim Phone As String = TextBox4.Text
+        Dim Email As String = TextBox5.Text
+        Dim Product As String = TextBox6.Text
+        Dim Due As Integer = TextBox7.Text
+        Dim Total As Integer = TextBox8.Text
+        Dim Description As String = RichTextBox1.Text
+
+
+        Dim query As String = "insert into invoicetab values(@clientid,@clientname,@age,@phone,@email,@product,@due,@total,@description)"
+
+        Using con As SqlConnection = New SqlConnection("Data Source=DESKTOP-ADG77QL\SQLEXPRESS;Initial Catalog=invoicedb;Integrated Security=True")
+
+            Using cnn As SqlCommand = New SqlCommand(query, con)
+
+                cnn.Parameters.AddWithValue("@ClientId", ClientId)
+                cnn.Parameters.AddWithValue("@ClientName", ClientName)
+                cnn.Parameters.AddWithValue("@Age", Age)
+                cnn.Parameters.AddWithValue("@Phone", Phone)
+                cnn.Parameters.AddWithValue("@Email", Email)
+                cnn.Parameters.AddWithValue("@Product", Product)
+
+                cnn.Parameters.AddWithValue("@Due", Due)
+
+                cnn.Parameters.AddWithValue("@Total", Total)
+
+                cnn.Parameters.AddWithValue("@Description", Description)
+
+                con.Open()
+
+                cnn.ExecuteNonQuery()
+
+
+
+                con.Close()
+
+                MessageBox.Show("Data Saved")
+
+
+
+
+
+
+
+
+Insert Code
+
+
+Dim query As String = "select * from invoicetab"
+
+        Using con As SqlConnection = New SqlConnection("Data Source=DESKTOP-ADG77QL\SQLEXPRESS;Initial Catalog=invoicedb;Integrated Security=True")
+
+            Using cnn As SqlCommand = New SqlCommand(query, con)
+
+                Using da As New SqlDataAdapter(cnn)
+
+                    Using de As New DataTable()
+
+                        da.Fill(de)
+
+                        DataGridView1.DataSource = de
+
+
+
+
+Display Code
+
+
+
+Dim query As String = "select * from invoicetab"
+
+        Using con As SqlConnection = New SqlConnection("Data Source=DESKTOP-ADG77QL\SQLEXPRESS;Initial Catalog=invoicedb;Integrated Security=True")
+
+            Using cnn As SqlCommand = New SqlCommand(query, con)
+
+                Using da As New SqlDataAdapter(cnn)
+
+                    Using de As New DataTable()
+
+                        da.Fill(de)
+
+                        DataGridView1.DataSource = de
